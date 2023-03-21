@@ -2,11 +2,11 @@
 #
 # SPDX-License-Identifier: MIT
 
-name: Build Layouts
-
 on: [push]
 env:
   python-version: "3.10"
+
+name: Build Layouts
 
 jobs:
   build:
@@ -37,14 +37,43 @@ jobs:
       - name: Upload linux layouts
         uses: actions/upload-artifact@v3
         with:
-          name: layouts-windows
+          name: layouts-linux
           path: |
             dist/*.xkb
             dist/*.json
       - name: Upload MacOS layouts
         uses: actions/upload-artifact@v3
         with:
-          name: layouts-windows
+          name: layouts-macos
           path: |
             dist/*.keylayout
             dist/*.json
+
+  make-asset:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: layouts-macos
+          path: layouts-macos
+      - uses: actions/download-artifact@v3
+        with:
+          name: layouts-windows
+          path: layouts-windows
+      - uses: actions/download-artifact@v3
+        with:
+          name: layouts-linux
+          path: layouts-linux
+      - run: mv layouts-linux/*.json .
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.json
+            layouts-windows/*.klc
+            layouts-linux/*.xkb
+            layouts-macos/*.keylayout
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
