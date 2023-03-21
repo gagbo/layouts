@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2023 Gerry Agbobada <git@gagbo.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# Kalamine output folder
+/dist/

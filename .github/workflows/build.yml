@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: 2023 Gerry Agbobada <git@gagbo.net>
+#
+# SPDX-License-Identifier: MIT
+
+name: Build Layouts
+
+on: [push]
+env:
+  python-version: 3.10
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ env.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Build layouts
+        run: |
+          kalamine layouts/*.toml
+      - name: Upload windows layouts
+        uses: actions/upload-artifact@v3
+          with:
+            name: layouts-windows
+            path: |
+              dist/*.klc
+              dist/*.json
+      - name: Upload linux layouts
+        uses: actions/upload-artifact@v3
+          with:
+            name: layouts-windows
+            path: |
+              dist/*.xkb
+              dist/*.json
+      - name: Upload MacOS layouts
+        uses: actions/upload-artifact@v3
+          with:
+            name: layouts-windows
+            path: |
+              dist/*.keylayout
+              dist/*.json
