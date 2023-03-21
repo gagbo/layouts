@@ -5,6 +5,8 @@
 on: [push]
 env:
   python-version: "3.10"
+permissions:
+  contents: write
 
 name: Build Layouts
 
