@@ -29,22 +29,22 @@ jobs:
           kalamine layouts/*.toml
       - name: Upload windows layouts
         uses: actions/upload-artifact@v3
-          with:
-            name: layouts-windows
-            path: |
-              dist/*.klc
-              dist/*.json
+        with:
+          name: layouts-windows
+          path: |
+            dist/*.klc
+            dist/*.json
       - name: Upload linux layouts
         uses: actions/upload-artifact@v3
-          with:
-            name: layouts-windows
-            path: |
-              dist/*.xkb
-              dist/*.json
+        with:
+          name: layouts-windows
+          path: |
+            dist/*.xkb
+            dist/*.json
       - name: Upload MacOS layouts
         uses: actions/upload-artifact@v3
-          with:
-            name: layouts-windows
-            path: |
-              dist/*.keylayout
-              dist/*.json
+        with:
+          name: layouts-windows
+          path: |
+            dist/*.keylayout
+            dist/*.json
