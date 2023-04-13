@@ -1,5 +1,5 @@
 name = "Ergo-L VX mini mod"
-name8 = "ergol-vx-mini"
+name8 = "ergolvxm"
 locale = "fr"
 variant = "ergol-vx-mini"
 description = "French (Ergo-L VX mini mod)"
@@ -44,5 +44,3 @@ altgr = '''
 shift =       "\u202f"  # NARROW NO-BREAK SPACE
 altgr =       "\u0020"  # SPACE
 altgr_shift = "\u00a0"  # NO-BREAK SPACE
-1dk =         "\u2019"  # RIGHT SINGLE QUOTATION MARK
-1dk_shift =   "\u2019"  # RIGHT SINGLE QUOTATION MARK
